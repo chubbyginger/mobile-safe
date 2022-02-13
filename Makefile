@@ -1,27 +1,28 @@
 # Makefile for mobile-safe.
 
-# Cross-Compiler
+# Cross-Compile options
 CROSS_COMPILE=arm-linux-gnueabi-
-# The compiler and linker
+ARCH=armv5te
+CPU=arm926ej-s
+# The compiler
 CC=$(CROSS_COMPILE)gcc
-LD=$(CROSS_COMPILE)ld
 
-INC=./lib
-CFLAGS=-Wall -g -I$(INC)
-SRC_LIST = $(wildcard *.c)
-OBJ_LIST = $(patsubst %.c,%.o,$(SRC_LIST))
+LIBRARY_PATH=./lib
+CFLAGS=-march=$(ARCH) -mcpu=$(CPU) -g -static -I$(LIBRARY_PATH)
+SRC_LIST=$(wildcard *.c)
+OBJ_LIST=$(patsubst %.c,%.o,$(SRC_LIST))
+TARGET=mobile-safe.elf
 
 default: all
 
 all:
-	$(CC) $(CFLAGS) -c $(SRC_LIST)
-	$(LD) -o mobile-safe $(OBJ_LIST)
+	$(CC) $(CFLAGS) -o $(TARGET) -c $(SRC_LIST) 
 
 # Simple target to test the environment.
 test-env:
-	$(CC) $(CFLAGS) dummy.c -o dummy.o
-	$(LD) -o dummy dummy.o
-	rm dummy dummy.o dummy.c
+	echo int main() {} > dummy.c
+	$(CC) $(CFLAGS) dummy.c -o dummy.elf
+	rm dummy.elf dummy.c
 
 clean:
-	rm ./mobile-safe *.o
+	rm mobile-safe.elf
