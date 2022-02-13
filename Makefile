@@ -2,15 +2,12 @@
 
 # Cross-Compile options
 CROSS_COMPILE=arm-linux-gnueabi-
-ARCH=armv5te
-CPU=arm926ej-s
 # The compiler
 CC=$(CROSS_COMPILE)gcc
 
 LIBRARY_PATH=./lib
-CFLAGS=-march=$(ARCH) -mcpu=$(CPU) -g -static -I$(LIBRARY_PATH)
+CFLAGS=-g -static -I$(LIBRARY_PATH)
 SRC_LIST=$(wildcard *.c)
-OBJ_LIST=$(patsubst %.c,%.o,$(SRC_LIST))
 TARGET=mobile-safe.elf
 
 default: all
