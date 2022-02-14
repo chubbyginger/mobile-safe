@@ -6,19 +6,19 @@ CROSS_COMPILE=arm-linux-gnueabi-
 CC=$(CROSS_COMPILE)gcc
 
 LIBRARY_PATH=./lib
-CFLAGS=-g -static -I$(LIBRARY_PATH)
+CFLAGS=-g -I$(LIBRARY_PATH)
 SRC_LIST=$(wildcard *.c)
 TARGET=mobile-safe.elf
 
 default: all
 
 all:
-	$(CC) $(CFLAGS) -o $(TARGET) -c $(SRC_LIST) 
+	$(CC) $(CFLAGS) -o $(TARGET) $(SRC_LIST) 
 
 # Simple target to test the environment.
 test-env:
 	echo int main() {} > dummy.c
-	$(CC) $(CFLAGS) dummy.c -o dummy.elf
+	$(CC) $(CFLAGS) -o dummy.elf dummy.c 
 	rm dummy.elf dummy.c
 
 clean:
