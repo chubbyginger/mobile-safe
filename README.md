@@ -1,5 +1,5 @@
 # Mobile Safe
-![](https://img.shields.io/github/license/yangshunhuai/mobile-safe?style=plastic) ![](https://img.shields.io/badge/language-C-blue?style=plastic) ![](https://img.shields.io/github/languages/code-size/yangshunhuai/mobile-safe?style=plastic)
+![](https://img.shields.io/github/license/yangshunhuai/mobile-safe?style=plastic) ![](https://img.shields.io/badge/language-C++-blue?style=plastic) ![](https://img.shields.io/github/languages/code-size/yangshunhuai/mobile-safe?style=plastic)
 
 一个存手机的乐高保险箱，不到时间手机/平板拿不出来。
 
@@ -13,6 +13,8 @@
 
 ## 软件
 因为EV3官方的系统很容易退出程序，并且**可以直接用Motor Control把门打开**，很不安全，所以用ev3dev系统，更加安全并且可以锁定退出键。
+
+原本想用C来写这个程序，因为我C++几乎没有学过但是C至少会用，但是ev3dev-c这个库永远都装不上，遂放弃，改用C++。
 
 ### 编译
 一般采用交叉编译的方法，在PC上编译完成后将ELF程序带到EV3主机上使用。

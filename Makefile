@@ -3,23 +3,23 @@
 # Cross-Compile options
 CROSS_COMPILE=arm-linux-gnueabi-
 # The compiler
-CC=$(CROSS_COMPILE)gcc
+XX=$(CROSS_COMPILE)g++
 
-LIBRARY_PATH=./lib
-CFLAGS=-g -I$(LIBRARY_PATH)
-SRC_LIST=$(wildcard *.c)
+INCLUDE_PATH=./lib
+CFLAGS=-g -I$(INCLUDE_PATH)
+SRC_LIST=$(wildcard *.cpp)
 TARGET=mobile-safe.elf
 
 default: all
 
 all:
-	$(CC) $(CFLAGS) -o $(TARGET) $(SRC_LIST) 
+	$(XX) $(CFLAGS) -o $(TARGET) lib/ev3dev.cpp $(SRC_LIST)
 
 # Simple target to test the environment.
 test-env:
-	echo int main() {} > dummy.c
-	$(CC) $(CFLAGS) -o dummy.elf dummy.c 
-	rm dummy.elf dummy.c
+	echo int main() {} > dummy.cpp
+	$(XX) $(CFLAGS) -o dummy.elf dummy.cpp
+	rm dummy.elf dummy.cpp
 
 clean:
 	rm mobile-safe.elf
