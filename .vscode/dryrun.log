@@ -1,0 +1,5 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/mnt/michael/EmbeddedDevelopment/Linux/mobile-safe'
+arm-linux-gnueabi-g++ -g -I./lib -o mobile-safe.elf lib/ev3dev.cpp 
+make: Leaving directory '/mnt/michael/EmbeddedDevelopment/Linux/mobile-safe'
+ 
